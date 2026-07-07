@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b173d" />
+  <meta name="description" content="Choice...Repeat helps you make one better food choice each day, track it, repeat it, and keep going." />
+  <title>Choice...Repeat</title>
+
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icon-192.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="app-header">
+    <div class="brand">
+      <img class="brand-logo" src="./assets/choicerepeat-logo.png" alt="Choice...Repeat logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex';" />
+      <div class="brand-fallback" aria-hidden="true">
+        <div class="loop-check">✓</div>
+        <strong>Choice<span>...</span>Repeat</strong>
+      </div>
+    </div>
+    <button id="installButton" class="ghost-button" hidden>Install App</button>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero card">
+      <p class="eyebrow">Real food. Better choices. One day at a time.</p>
+      <h1>Every day, make one better choice. Track it. Repeat it. Keep going.</h1>
+      <p class="hero-copy">
+        Choice...Repeat is a practical healthy-eating companion for people who are done with rigid diet programs.
+        Start with one realistic food swap, one check-in, and one repeatable habit.
+      </p>
+      <div class="hero-actions">
+        <a class="primary-button" href="#choiceCoach">Find a better choice</a>
+        <a class="secondary-button" href="#dailyCheckin">Daily check-in</a>
+      </div>
+    </section>
+
+    <section class="grid two-col">
+      <article id="choiceCoach" class="card">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Better Choice Coach</p>
+            <h2>What are you about to eat?</h2>
+          </div>
+        </div>
+        <label for="mealInput">Type a meal, snack, craving, or restaurant idea.</label>
+        <textarea id="mealInput" rows="4" placeholder="Example: burger, fries, and sweet tea"></textarea>
+        <button id="coachButton" class="primary-button full">Show better choices</button>
+        <div id="coachResult" class="result-panel" aria-live="polite"></div>
+      </article>
+
+      <article id="dailyCheckin" class="card">
+        <p class="eyebrow">Daily Check-In</p>
+        <h2>Track today’s repeatable wins</h2>
+
+        <form id="checkinForm" class="checkin-form">
+          <div class="form-grid">
+            <label>Weight
+              <input name="weight" inputmode="decimal" placeholder="lbs" />
+            </label>
+            <label>Waist
+              <input name="waist" inputmode="decimal" placeholder="inches" />
+            </label>
+            <label>Water
+              <input name="water" inputmode="numeric" placeholder="glasses" />
+            </label>
+            <label>Walk
+              <input name="walk" inputmode="numeric" placeholder="minutes" />
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>Today I repeated:</legend>
+            <label class="check-row"><input type="checkbox" name="protein" /> Protein at a meal</label>
+            <label class="check-row"><input type="checkbox" name="fiber" /> Fruit, vegetables, beans, or whole grains</label>
+            <label class="check-row"><input type="checkbox" name="noLateSnack" /> No unplanned late-night snack</label>
+            <label class="check-row"><input type="checkbox" name="betterChoice" /> One better choice</label>
+          </fieldset>
+
+          <label>Notes
+            <textarea name="notes" rows="3" placeholder="What worked? What was hard?"></textarea>
+          </label>
+
+          <button class="primary-button full" type="submit">Save check-in</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="grid two-col">
+      <article class="card">
+        <p class="eyebrow">Progress</p>
+        <h2>Your recent check-ins</h2>
+        <div id="statsCards" class="stats"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Weight</th>
+                <th>Waist</th>
+                <th>Wins</th>
+              </tr>
+            </thead>
+            <tbody id="historyTable"></tbody>
+          </table>
+        </div>
+        <button id="clearDataButton" class="danger-button">Clear test data</button>
+      </article>
+
+      <article class="card">
+        <p class="eyebrow">Starter Swaps</p>
+        <h2>Simple “repeat better” ideas</h2>
+        <div id="swapList" class="swap-list"></div>
+      </article>
+    </section>
+
+    <section class="card disclaimer">
+      <h2>Health note</h2>
+      <p>
+        Choice...Repeat is for general education, food-choice support, and habit tracking. It does not diagnose,
+        treat, or replace medical advice. Talk with a qualified medical professional before making major diet,
+        exercise, or medication changes, especially if you have medical conditions or take prescriptions.
+      </p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="#choiceCoach">Choices</a>
+    <a href="#dailyCheckin">Check-In</a>
+    <a href="#statsCards">Progress</a>
+  </nav>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
