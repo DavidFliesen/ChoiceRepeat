@@ -1,15 +1,15 @@
-const storageKey = "choicerepeat.checkins.v1";
+const storageKey = "choicerepeat.checkins.v2";
 
 const starterSwaps = [
   {
     from: "Burger, fries, and sweet tea",
     to: "Keep the burger, switch to water or unsweet tea, and choose a small fry or fruit side.",
-    why: "This keeps the meal normal but removes the easiest extra calories."
+    why: "This keeps the meal normal while trimming the easiest extra calories."
   },
   {
     from: "Pizza night",
     to: "Start with salad or vegetables, eat 2 slices slowly, and save the rest.",
-    why: "You keep the family meal without turning it into an all-or-nothing night."
+    why: "You keep the family meal without turning it into an all-or-nothing event."
   },
   {
     from: "Late-night chips",
@@ -18,8 +18,8 @@ const starterSwaps = [
   },
   {
     from: "Big breakfast biscuit combo",
-    to: "Choose eggs/protein first, skip the sweet drink, and take a 10-minute walk later.",
-    why: "Protein plus a small walk can help the rest of the day feel easier."
+    to: "Choose protein first, skip the sweet drink, and take a 10-minute walk later.",
+    why: "Protein plus a short walk often makes the rest of the day easier."
   },
   {
     from: "Mexican restaurant",
@@ -45,6 +45,15 @@ function getCheckins() {
 
 function saveCheckins(checkins) {
   localStorage.setItem(storageKey, JSON.stringify(checkins));
+}
+
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function analyzeMeal(input) {
@@ -76,7 +85,7 @@ function analyzeMeal(input) {
       dontPanic: "Cravings are normal. The goal is not perfection — it is repeating a better response."
     },
     {
-      matches: ["mexican", "taco", "burrito", "chips", "queso"],
+      matches: ["mexican", "taco", "burrito", "queso"],
       title: "Mexican / Tex-Mex",
       better: "Limit chips to one small plate and choose water or unsweet tea.",
       betterStill: "Choose fajitas, grilled protein, beans, salsa, and vegetables. Go easy on queso and sour cream.",
@@ -88,7 +97,7 @@ function analyzeMeal(input) {
       title: "Breakfast",
       better: "Add protein first: eggs, Greek yogurt, cottage cheese, turkey, or a protein shake.",
       betterStill: "Reduce sweet drinks and choose fruit or oatmeal instead of pastries or oversized starch portions.",
-      best: "Build breakfast around 25–40g protein plus fiber so cravings are easier later.",
+      best: "Build breakfast around protein plus fiber so cravings are easier later.",
       dontPanic: "A better breakfast often makes the whole day easier."
     }
   ];
@@ -112,15 +121,6 @@ function renderCoachResult(result, input) {
   `;
 }
 
-function escapeHTML(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
 function renderSwaps() {
   const list = document.querySelector("#swapList");
   list.innerHTML = starterSwaps.map(swap => `
@@ -134,54 +134,60 @@ function renderSwaps() {
 
 function renderHistory() {
   const checkins = getCheckins().sort((a, b) => b.date.localeCompare(a.date));
-  const table = document.querySelector("#historyTable");
+  const history = document.querySelector("#historyList");
   const stats = document.querySelector("#statsCards");
 
+  const betterChoices = checkins.filter(c => c.betterChoice).length;
+  const totalWalk = checkins.reduce((sum, c) => sum + (Number(c.walk) || 0), 0);
+  const lastWeight = checkins.find(c => c.weight)?.weight || "—";
+
+  stats.innerHTML = `
+    <article class="metric-card">
+      <span class="metric-label">Check-ins</span>
+      <span class="metric-value">${checkins.length}</span>
+    </article>
+    <article class="metric-card">
+      <span class="metric-label">Better choices</span>
+      <span class="metric-value">${betterChoices}</span>
+    </article>
+    <article class="metric-card">
+      <span class="metric-label">Walk minutes</span>
+      <span class="metric-value">${totalWalk}</span>
+    </article>
+  `;
+
   if (!checkins.length) {
-    table.innerHTML = `<tr><td colspan="4">No check-ins yet. Save today’s first repeatable win.</td></tr>`;
-    stats.innerHTML = `
-      <div class="stat"><strong>0</strong><span>check-ins</span></div>
-      <div class="stat"><strong>0</strong><span>better choices</span></div>
-      <div class="stat"><strong>0</strong><span>walk minutes</span></div>
+    history.innerHTML = `
+      <div class="history-card">
+        <strong>No check-ins yet</strong>
+        <p>Save your first daily check-in to start building momentum.</p>
+      </div>
     `;
     return;
   }
 
-  const betterChoices = checkins.filter(c => c.betterChoice).length;
-  const totalWalk = checkins.reduce((sum, c) => sum + (Number(c.walk) || 0), 0);
-  const latestWeight = checkins.find(c => c.weight)?.weight || "—";
-
-  stats.innerHTML = `
-    <div class="stat"><strong>${checkins.length}</strong><span>check-ins</span></div>
-    <div class="stat"><strong>${betterChoices}</strong><span>better choices</span></div>
-    <div class="stat"><strong>${totalWalk}</strong><span>walk minutes</span></div>
-  `;
-
-  table.innerHTML = checkins.map(c => {
-    const wins = ["protein", "fiber", "noLateSnack", "betterChoice"]
-      .filter(key => c[key])
-      .map(key => ({
-        protein: "Protein",
-        fiber: "Fiber",
-        noLateSnack: "No late snack",
-        betterChoice: "Better choice"
-      })[key])
-      .join(", ") || "—";
+  history.innerHTML = checkins.map(c => {
+    const winLabels = [];
+    if (c.protein) winLabels.push("Protein");
+    if (c.fiber) winLabels.push("Fiber");
+    if (c.noLateSnack) winLabels.push("No late snack");
+    if (c.betterChoice) winLabels.push("Better choice");
 
     return `
-      <tr>
-        <td>${escapeHTML(c.date)}</td>
-        <td>${escapeHTML(c.weight || "—")}</td>
-        <td>${escapeHTML(c.waist || "—")}</td>
-        <td>${escapeHTML(wins)}</td>
-      </tr>
+      <div class="history-card">
+        <strong>${escapeHTML(c.date)}</strong>
+        <p>Weight: ${escapeHTML(c.weight || "—")} &nbsp;•&nbsp; Waist: ${escapeHTML(c.waist || "—")} &nbsp;•&nbsp; Walk: ${escapeHTML(c.walk || "0")} min</p>
+        <div class="meta">
+          ${winLabels.length ? winLabels.map(w => `<span class="meta-pill">${escapeHTML(w)}</span>`).join("") : `<span class="meta-pill">No wins checked</span>`}
+        </div>
+        ${c.notes ? `<p style="margin-top:0.6rem;"><small>${escapeHTML(c.notes)}</small></p>` : ""}
+      </div>
     `;
   }).join("");
 }
 
 function setupCheckinForm() {
   const form = document.querySelector("#checkinForm");
-
   form.addEventListener("submit", event => {
     event.preventDefault();
     const formData = new FormData(form);
@@ -204,13 +210,21 @@ function setupCheckinForm() {
     saveCheckins([...withoutToday, entry]);
     form.reset();
     renderHistory();
-    alert("Saved. That is one repeatable win.");
+    alert("Saved. That’s one repeatable win.");
   });
 }
 
 function setupCoach() {
   const button = document.querySelector("#coachButton");
   const input = document.querySelector("#mealInput");
+  const chips = document.querySelectorAll(".chip");
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      input.value = chip.dataset.fill || "";
+      input.focus();
+    });
+  });
 
   button.addEventListener("click", () => {
     const value = input.value.trim();
@@ -224,7 +238,6 @@ function setupCoach() {
       }, "nothing yet");
       return;
     }
-
     renderCoachResult(analyzeMeal(value), value);
   });
 }

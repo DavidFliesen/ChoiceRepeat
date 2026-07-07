@@ -6,134 +6,160 @@
   <meta name="theme-color" content="#0b173d" />
   <meta name="description" content="Choice...Repeat helps you make one better food choice each day, track it, repeat it, and keep going." />
   <title>Choice...Repeat</title>
-
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./assets/icon-192.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./assets/icon-192.png" />
-
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="app-header">
-    <div class="brand">
-      <img class="brand-logo" src="./assets/choicerepeat-logo.png" alt="Choice...Repeat logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex';" />
-      <div class="brand-fallback" aria-hidden="true">
-        <div class="loop-check">✓</div>
-        <strong>Choice<span>...</span>Repeat</strong>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-wrap">
+        <img class="brand-logo" src="./assets/choicerepeat-logo.png" alt="Choice...Repeat logo"
+          onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex';" />
+        <div class="brand-fallback" aria-hidden="true">
+          <div class="brand-fallback-badge">✓</div>
+          <strong>Choice<span>...</span>Repeat</strong>
+        </div>
       </div>
+      <button id="installButton" class="icon-button" hidden>Install</button>
     </div>
-    <button id="installButton" class="ghost-button" hidden>Install App</button>
   </header>
 
-  <main id="main" class="shell">
-    <section class="hero card">
-      <p class="eyebrow">Real food. Better choices. One day at a time.</p>
-      <h1>Every day, make one better choice. Track it. Repeat it. Keep going.</h1>
-      <p class="hero-copy">
-        Choice...Repeat is a practical healthy-eating companion for people who are done with rigid diet programs.
-        Start with one realistic food swap, one check-in, and one repeatable habit.
-      </p>
-      <div class="hero-actions">
-        <a class="primary-button" href="#choiceCoach">Find a better choice</a>
-        <a class="secondary-button" href="#dailyCheckin">Daily check-in</a>
+  <main id="main" class="app-shell">
+    <section class="hero-panel card">
+      <div class="hero-content">
+        <p class="eyebrow">Real food. Better choices. One day at a time.</p>
+        <h1>Make one better choice today.</h1>
+        <p class="subtitle">Track it. Repeat it. Keep going. No rigid diet program required.</p>
+        <div class="quick-actions">
+          <a class="primary-button" href="#choiceCoach">Better choice coach</a>
+          <a class="secondary-button" href="#dailyCheckin">Check in</a>
+        </div>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit-ring orbit-one"></div>
+        <div class="orbit-ring orbit-two"></div>
+        <div class="orbit-check">✓</div>
       </div>
     </section>
 
-    <section class="grid two-col">
-      <article id="choiceCoach" class="card">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Better Choice Coach</p>
-            <h2>What are you about to eat?</h2>
-          </div>
-        </div>
-        <label for="mealInput">Type a meal, snack, craving, or restaurant idea.</label>
-        <textarea id="mealInput" rows="4" placeholder="Example: burger, fries, and sweet tea"></textarea>
-        <button id="coachButton" class="primary-button full">Show better choices</button>
-        <div id="coachResult" class="result-panel" aria-live="polite"></div>
+    <section class="metrics-strip" id="statsCards" aria-label="Stats"></section>
+
+    <section class="micro-grid">
+      <article class="mini-card">
+        <span class="mini-label">Today’s focus</span>
+        <strong id="todayFocus">One better choice</strong>
+        <p>Start with the next food decision in front of you.</p>
       </article>
+      <article class="mini-card accent">
+        <span class="mini-label">Repeatable win</span>
+        <strong>10-minute walk after a meal</strong>
+        <p>Small, realistic, and easier to keep going with.</p>
+      </article>
+    </section>
 
-      <article id="dailyCheckin" class="card">
-        <p class="eyebrow">Daily Check-In</p>
-        <h2>Track today’s repeatable wins</h2>
+    <section id="choiceCoach" class="card section-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Better Choice Coach</p>
+          <h2>What are you about to eat?</h2>
+        </div>
+      </div>
 
-        <form id="checkinForm" class="checkin-form">
-          <div class="form-grid">
-            <label>Weight
-              <input name="weight" inputmode="decimal" placeholder="lbs" />
-            </label>
-            <label>Waist
-              <input name="waist" inputmode="decimal" placeholder="inches" />
-            </label>
-            <label>Water
-              <input name="water" inputmode="numeric" placeholder="glasses" />
-            </label>
-            <label>Walk
-              <input name="walk" inputmode="numeric" placeholder="minutes" />
-            </label>
-          </div>
+      <label class="input-label" for="mealInput">Meal, snack, craving, or restaurant</label>
+      <textarea id="mealInput" rows="3" placeholder="Example: burger, fries, and sweet tea"></textarea>
 
-          <fieldset>
-            <legend>Today I repeated:</legend>
-            <label class="check-row"><input type="checkbox" name="protein" /> Protein at a meal</label>
-            <label class="check-row"><input type="checkbox" name="fiber" /> Fruit, vegetables, beans, or whole grains</label>
-            <label class="check-row"><input type="checkbox" name="noLateSnack" /> No unplanned late-night snack</label>
-            <label class="check-row"><input type="checkbox" name="betterChoice" /> One better choice</label>
-          </fieldset>
+      <div class="chips" role="list" aria-label="Quick examples">
+        <button class="chip" data-fill="burger, fries, and sweet tea" type="button">Burger combo</button>
+        <button class="chip" data-fill="pizza night" type="button">Pizza night</button>
+        <button class="chip" data-fill="late-night chips" type="button">Late-night snack</button>
+        <button class="chip" data-fill="Mexican restaurant" type="button">Mexican</button>
+      </div>
 
-          <label>Notes
-            <textarea name="notes" rows="3" placeholder="What worked? What was hard?"></textarea>
+      <button id="coachButton" class="primary-button full">Show better choices</button>
+      <div id="coachResult" class="coach-panel" aria-live="polite"></div>
+    </section>
+
+    <section id="dailyCheckin" class="card section-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Daily Check-In</p>
+          <h2>Track today’s progress</h2>
+        </div>
+      </div>
+
+      <form id="checkinForm" class="checkin-layout">
+        <div class="input-grid">
+          <label>Weight
+            <input name="weight" inputmode="decimal" placeholder="lbs" />
           </label>
-
-          <button class="primary-button full" type="submit">Save check-in</button>
-        </form>
-      </article>
-    </section>
-
-    <section class="grid two-col">
-      <article class="card">
-        <p class="eyebrow">Progress</p>
-        <h2>Your recent check-ins</h2>
-        <div id="statsCards" class="stats"></div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Weight</th>
-                <th>Waist</th>
-                <th>Wins</th>
-              </tr>
-            </thead>
-            <tbody id="historyTable"></tbody>
-          </table>
+          <label>Waist
+            <input name="waist" inputmode="decimal" placeholder="inches" />
+          </label>
+          <label>Water
+            <input name="water" inputmode="numeric" placeholder="glasses" />
+          </label>
+          <label>Walk
+            <input name="walk" inputmode="numeric" placeholder="minutes" />
+          </label>
         </div>
-        <button id="clearDataButton" class="danger-button">Clear test data</button>
-      </article>
 
-      <article class="card">
-        <p class="eyebrow">Starter Swaps</p>
-        <h2>Simple “repeat better” ideas</h2>
-        <div id="swapList" class="swap-list"></div>
-      </article>
+        <div class="habit-group">
+          <p class="group-title">Today I repeated:</p>
+          <div class="habit-pills">
+            <label class="habit-pill"><input type="checkbox" name="protein" /><span>Protein</span></label>
+            <label class="habit-pill"><input type="checkbox" name="fiber" /><span>Fiber</span></label>
+            <label class="habit-pill"><input type="checkbox" name="noLateSnack" /><span>No late snack</span></label>
+            <label class="habit-pill"><input type="checkbox" name="betterChoice" /><span>Better choice</span></label>
+          </div>
+        </div>
+
+        <label>Notes
+          <textarea name="notes" rows="3" placeholder="What worked? What was difficult?"></textarea>
+        </label>
+
+        <button class="primary-button full" type="submit">Save check-in</button>
+      </form>
     </section>
 
-    <section class="card disclaimer">
+    <section class="card section-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Starter Swaps</p>
+          <h2>Simple ways to repeat better</h2>
+        </div>
+      </div>
+      <div id="swapList" class="swap-stack"></div>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Recent Progress</p>
+          <h2>Your latest check-ins</h2>
+        </div>
+      </div>
+      <div id="historyList" class="history-stack"></div>
+      <button id="clearDataButton" class="danger-button">Clear test data</button>
+    </section>
+
+    <section class="card health-note">
       <h2>Health note</h2>
       <p>
         Choice...Repeat is for general education, food-choice support, and habit tracking. It does not diagnose,
         treat, or replace medical advice. Talk with a qualified medical professional before making major diet,
-        exercise, or medication changes, especially if you have medical conditions or take prescriptions.
+        exercise, or medication changes.
       </p>
     </section>
   </main>
 
   <nav class="bottom-nav" aria-label="Primary">
-    <a href="#choiceCoach">Choices</a>
+    <a href="#choiceCoach">Coach</a>
     <a href="#dailyCheckin">Check-In</a>
-    <a href="#statsCards">Progress</a>
+    <a href="#historyList">Progress</a>
   </nav>
 
   <script src="./app.js" type="module"></script>

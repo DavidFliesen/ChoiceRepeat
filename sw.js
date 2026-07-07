@@ -1,4 +1,4 @@
-const cacheName = "choicerepeat-v1";
+const cacheName = "choicerepeat-v2";
 const appShell = [
   "./",
   "./index.html",
@@ -6,7 +6,9 @@ const appShell = [
   "./app.js",
   "./manifest.webmanifest",
   "./assets/icon-192.svg",
-  "./assets/icon-512.svg"
+  "./assets/icon-512.svg",
+  "./assets/icon-192.png",
+  "./assets/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
