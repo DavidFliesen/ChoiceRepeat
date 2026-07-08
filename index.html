@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#f3ead8" />
+  <meta name="theme-color" content="#fbf3e6" />
   <meta name="description" content="Choice...Repeat helps you make one meaningful choice each day, repeat it, and stack subtle changes that last." />
   <title>Choice...Repeat</title>
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -26,12 +26,20 @@
 
     <section class="screen active" id="screen-today" aria-labelledby="today-title">
       <article class="hero">
+        <div class="sun-orb" aria-hidden="true"></div>
+        <div class="leaf-sprig leaf-left" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="leaf-sprig leaf-right" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
         <p class="eyebrow">Small changes that last</p>
         <h1 id="today-title">One better choice today.</h1>
         <p>Not a perfect life. Not another temporary plan. Just one meaningful choice you can repeat.</p>
       </article>
 
-      <article class="card">
+      <article class="card daily-card">
+        <div class="card-watermark choice-watermark" aria-hidden="true">↻</div>
         <div class="card-meta">
           <span id="dailyCategory" class="badge">Today</span>
           <span id="todayDate" class="date-text"></span>
@@ -51,6 +59,7 @@
       </article>
 
       <article class="card inspiration-card">
+        <div class="card-watermark" aria-hidden="true">✦</div>
         <div class="card-meta">
           <span class="badge warm">Inspiration Moment</span>
           <span id="inspirationTheme" class="date-text"></span>
@@ -58,7 +67,8 @@
 
         <div class="moment-top">
           <div class="portrait-tile">
-            <div id="inspirationMonogram" class="monogram">AL</div>
+            <div class="portrait-glow"></div>
+            <img id="inspirationPortrait" class="portrait-image" src="./assets/portraits/lincoln.svg" alt="Stylized portrait illustration" />
             <div id="inspirationSymbol" class="portrait-symbol">✦</div>
           </div>
           <div>
@@ -88,17 +98,20 @@
       </article>
 
       <section class="stats-row">
-        <article>
+        <article class="stat-card">
+          <div class="mini-graphic stack-graphic" aria-hidden="true"><span></span><span></span><span></span></div>
           <strong id="stackCount">0</strong>
           <span>choices stacked</span>
         </article>
-        <article>
+        <article class="stat-card">
+          <div class="mini-graphic sprout-graphic" aria-hidden="true"><span></span><span></span></div>
           <strong id="weekCount">0</strong>
           <span>this week</span>
         </article>
       </section>
 
       <article class="card">
+        <div class="card-watermark" aria-hidden="true">◌</div>
         <h2>Quick reflection</h2>
         <p>What made today’s choice easier or harder?</p>
         <textarea id="reflectionInput" rows="3" placeholder="Example: I changed the drink. That felt doable."></textarea>
@@ -107,7 +120,8 @@
     </section>
 
     <section class="screen" id="screen-explore" aria-labelledby="explore-title">
-      <div class="screen-heading">
+      <div class="screen-heading illustrated-heading">
+        <div class="heading-graphic" aria-hidden="true"><span></span><span></span><span></span></div>
         <p class="eyebrow">Explore</p>
         <h1 id="explore-title">Choose your next small change.</h1>
         <p>Pick one area that would help your real life today.</p>
@@ -132,7 +146,8 @@
     </section>
 
     <section class="screen" id="screen-coach" aria-labelledby="coach-title">
-      <div class="screen-heading">
+      <div class="screen-heading illustrated-heading">
+        <div class="heading-graphic compass-graphic" aria-hidden="true"><span></span><span></span><span></span></div>
         <p class="eyebrow">Choice Coach</p>
         <h1 id="coach-title">What choice are you facing?</h1>
         <p>Food, movement, sleep, cravings, stress, routines — ask for one better option.</p>
@@ -155,7 +170,8 @@
     </section>
 
     <section class="screen" id="screen-stack" aria-labelledby="stack-title">
-      <div class="screen-heading">
+      <div class="screen-heading illustrated-heading">
+        <div class="heading-graphic stack-heading" aria-hidden="true"><span></span><span></span><span></span></div>
         <p class="eyebrow">My Stack</p>
         <h1 id="stack-title">Your small changes are adding up.</h1>
         <p>This is momentum, not perfection.</p>
@@ -168,6 +184,9 @@
 
     <section class="screen" id="screen-about" aria-labelledby="about-title">
       <article class="card story-card">
+        <div class="about-graphic" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
         <p class="eyebrow">About</p>
         <h1 id="about-title">The Inspiration</h1>
         <p>

@@ -1,4 +1,4 @@
-const cacheName = "choicerepeat-v6";
+const cacheName = "choicerepeat-v8";
 const appShell = [
   "./",
   "./index.html",

@@ -1,5 +1,5 @@
-const storageKey = "choicerepeat.stack.v6";
-const settingsKey = "choicerepeat.settings.v6";
+const storageKey = "choicerepeat.stack.v8";
+const settingsKey = "choicerepeat.settings.v8";
 
 const choices = [
   {id:"drink-swap",category:"Eat",title:"Change the drink, not the whole meal.",why:"A small drink swap can reduce extra sugar without making the meal feel like a punishment.",tryThis:"At one meal today, keep the food normal and choose water, sparkling water, or unsweet tea.",tags:["food","simple","low-friction"]},
@@ -60,6 +60,8 @@ function renderToday(){
   document.querySelector("#inspirationRepeat").textContent=m.repeatLine;
   document.querySelector("#inspirationMonogram").textContent=m.monogram;
   document.querySelector("#inspirationSymbol").textContent=m.symbol;
+  const portrait=document.querySelector("#inspirationPortrait");
+  if(portrait){portrait.src=`./assets/portraits/${m.id}.svg`; portrait.alt=`Stylized portrait of ${m.person}`;}
   const stack=getStack();
   const weekAgo=new Date(); weekAgo.setDate(weekAgo.getDate()-6);
   const weekly=stack.filter(i=>new Date(i.date)>=new Date(weekAgo.toISOString().slice(0,10))).length;
@@ -82,7 +84,7 @@ function renderChoiceLibrary(category="All"){
 
 function renderInspirationLibrary(){
   const list=document.querySelector("#inspirationLibrary");
-  list.innerHTML=inspirationMoments.map(m=>`<article class="card"><div class="moment-top"><div class="portrait-tile"><div class="monogram">${escapeHTML(m.monogram)}</div><div class="portrait-symbol">${escapeHTML(m.symbol)}</div></div><div><span class="badge warm">${escapeHTML(m.theme)}</span><h2>${escapeHTML(m.person)}</h2><p class="moment-title">${escapeHTML(m.title)}</p></div></div><p>${escapeHTML(m.summary)}</p><div class="soft-panel"><strong>The choice</strong><p>${escapeHTML(m.choice)}</p></div><div class="soft-panel sage-panel"><strong>Try this today</strong><p>${escapeHTML(m.tryToday)}</p></div><p class="repeat-line">${escapeHTML(m.repeatLine)}</p><button class="moment-button" data-set-moment="${escapeHTML(m.id)}">Make this today’s moment</button></article>`).join("");
+  list.innerHTML=inspirationMoments.map(m=>`<article class="card"><div class="moment-top"><div class="portrait-tile"><div class="portrait-glow"></div><img class="portrait-image" src="./assets/portraits/${escapeHTML(m.id)}.svg" alt="Stylized portrait of ${escapeHTML(m.person)}" /><div class="portrait-symbol">${escapeHTML(m.symbol)}</div></div><div><span class="badge warm">${escapeHTML(m.theme)}</span><h2>${escapeHTML(m.person)}</h2><p class="moment-title">${escapeHTML(m.title)}</p></div></div><p>${escapeHTML(m.summary)}</p><div class="soft-panel"><strong>The choice</strong><p>${escapeHTML(m.choice)}</p></div><div class="soft-panel sage-panel"><strong>Try this today</strong><p>${escapeHTML(m.tryToday)}</p></div><p class="repeat-line">${escapeHTML(m.repeatLine)}</p><button class="moment-button" data-set-moment="${escapeHTML(m.id)}">Make this today’s moment</button></article>`).join("");
   list.querySelectorAll("[data-set-moment]").forEach(btn=>btn.addEventListener("click",()=>{const s=getSettings();s.todayMomentId=btn.dataset.setMoment;saveSettings(s);renderToday();routeTo("today")}));
 }
 
