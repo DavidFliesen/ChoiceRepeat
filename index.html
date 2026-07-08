@@ -11,10 +11,8 @@
   <link rel="apple-touch-icon" href="./assets/icon-192.png" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <main id="main" class="app-shell">
     <header class="brand-header">
       <button class="brand-wordmark" data-route="today" aria-label="Choice...Repeat home">
@@ -23,153 +21,43 @@
       </button>
       <button id="installButton" class="small-button" hidden>Install</button>
     </header>
-
     <section class="screen active" id="screen-today" aria-labelledby="today-title">
       <article class="hero-card">
         <p class="eyebrow">Small changes that last</p>
         <h1 id="today-title">One better choice today.</h1>
         <p>Not a perfect life. Not another temporary plan. Just one meaningful choice you can repeat.</p>
       </article>
-
       <article class="daily-card">
-        <div class="card-meta">
-          <span id="dailyCategory" class="category-badge">Today</span>
-          <span id="todayDate" class="date-text"></span>
-        </div>
-        <h2 id="dailyTitle">Loading today’s choice...</h2>
-        <p id="dailyWhy"></p>
-
-        <div class="gentle-box">
-          <strong>Try it this way</strong>
-          <p id="dailyTry"></p>
-        </div>
-
-        <div class="button-row">
-          <button id="triedTodayButton" class="primary-button">I tried this today</button>
-          <button id="newChoiceButton" class="secondary-button">Another choice</button>
-        </div>
+        <div class="card-meta"><span id="dailyCategory" class="category-badge">Today</span><span id="todayDate" class="date-text"></span></div>
+        <h2 id="dailyTitle">Loading today’s choice...</h2><p id="dailyWhy"></p>
+        <div class="gentle-box"><strong>Try it this way</strong><p id="dailyTry"></p></div>
+        <div class="button-row"><button id="triedTodayButton" class="primary-button">I tried this today</button><button id="newChoiceButton" class="secondary-button">Another choice</button></div>
       </article>
-
-      <section class="calm-stats">
-        <article>
-          <strong id="stackCount">0</strong>
-          <span>choices stacked</span>
-        </article>
-        <article>
-          <strong id="weekCount">0</strong>
-          <span>this week</span>
-        </article>
-      </section>
-
-      <article class="reflection-card">
-        <h2>Quick reflection</h2>
-        <p>What made today’s choice easier or harder?</p>
-        <textarea id="reflectionInput" rows="3" placeholder="Example: I changed the drink. That felt doable."></textarea>
-        <button id="saveReflectionButton" class="primary-button full">Save reflection</button>
+      <article class="inspiration-card">
+        <div class="card-meta"><span class="category-badge warm">Inspiration Moment</span><span id="inspirationTheme" class="date-text"></span></div>
+        <div class="inspiration-top"><div class="portrait-tile"><div id="inspirationMonogram" class="monogram">AL</div><div id="inspirationSymbol" class="portrait-symbol">✦</div></div><div class="inspiration-copy"><h2 id="inspirationPerson">Loading moment...</h2><p id="inspirationTitle" class="inspiration-title"></p></div></div>
+        <p id="inspirationSummary"></p>
+        <div class="gentle-box"><strong>The choice</strong><p id="inspirationChoice"></p></div>
+        <div class="gentle-box alt"><strong>Try this today</strong><p id="inspirationTry"></p></div>
+        <p id="inspirationRepeat" class="repeat-line"></p>
+        <div class="button-row"><button id="useMomentButton" class="secondary-button">Use as reflection prompt</button><button id="newMomentButton" class="secondary-button">Another moment</button></div>
       </article>
+      <section class="calm-stats"><article><strong id="stackCount">0</strong><span>choices stacked</span></article><article><strong id="weekCount">0</strong><span>this week</span></article></section>
+      <article class="reflection-card"><h2>Quick reflection</h2><p>What made today’s choice easier or harder?</p><textarea id="reflectionInput" rows="3" placeholder="Example: I changed the drink. That felt doable."></textarea><button id="saveReflectionButton" class="primary-button full">Save reflection</button></article>
     </section>
-
     <section class="screen" id="screen-explore" aria-labelledby="explore-title">
-      <div class="screen-heading">
-        <p class="eyebrow">Explore</p>
-        <h1 id="explore-title">Choose your next small change.</h1>
-        <p>Pick one area that would help your real life today.</p>
-      </div>
-
-      <div id="categoryFilters" class="category-filters"></div>
-      <div id="choiceLibrary" class="choice-library"></div>
+      <div class="screen-heading"><p class="eyebrow">Explore</p><h1 id="explore-title">Choose your next small change.</h1><p>Pick one area that would help your real life today.</p></div>
+      <section class="subsection"><div class="subsection-heading"><h2>Choice Library</h2><p>Small, repeatable life changes.</p></div><div id="categoryFilters" class="category-filters"></div><div id="choiceLibrary" class="choice-library"></div></section>
+      <section class="subsection"><div class="subsection-heading"><h2>Inspiration Moments</h2><p>Short original stories from history to remind you that challenge and growth go together.</p></div><div id="inspirationLibrary" class="inspiration-library"></div></section>
     </section>
-
     <section class="screen" id="screen-coach" aria-labelledby="coach-title">
-      <div class="screen-heading">
-        <p class="eyebrow">Choice Coach</p>
-        <h1 id="coach-title">What choice are you facing?</h1>
-        <p>Food, movement, sleep, cravings, stress, routines — ask for one better option.</p>
-      </div>
-
-      <article class="coach-card">
-        <label for="coachInput">Tell the coach what is happening.</label>
-        <textarea id="coachInput" rows="4" placeholder="Example: I want chips late at night, but I’m not really hungry."></textarea>
-
-        <div class="chips" aria-label="Quick prompts">
-          <button class="chip" data-fill="I want fast food but I want to make it a little better.">Fast food</button>
-          <button class="chip" data-fill="I keep snacking late at night.">Late snack</button>
-          <button class="chip" data-fill="I feel too tired to exercise today.">Too tired</button>
-          <button class="chip" data-fill="I had a rough day and want comfort food.">Rough day</button>
-        </div>
-
-        <button id="coachButton" class="primary-button full">Give me one better choice</button>
-        <div id="coachResult" class="coach-result"></div>
-      </article>
+      <div class="screen-heading"><p class="eyebrow">Choice Coach</p><h1 id="coach-title">What choice are you facing?</h1><p>Food, movement, sleep, cravings, stress, routines — ask for one better option.</p></div>
+      <article class="coach-card"><label for="coachInput">Tell the coach what is happening.</label><textarea id="coachInput" rows="4" placeholder="Example: I want chips late at night, but I’m not really hungry."></textarea><div class="chips" aria-label="Quick prompts"><button class="chip" data-fill="I want fast food but I want to make it a little better.">Fast food</button><button class="chip" data-fill="I keep snacking late at night.">Late snack</button><button class="chip" data-fill="I feel too tired to exercise today.">Too tired</button><button class="chip" data-fill="I had a rough day and want comfort food.">Rough day</button></div><button id="coachButton" class="primary-button full">Give me one better choice</button><div id="coachResult" class="coach-result"></div></article>
     </section>
-
-    <section class="screen" id="screen-stack" aria-labelledby="stack-title">
-      <div class="screen-heading">
-        <p class="eyebrow">My Stack</p>
-        <h1 id="stack-title">Your small changes are adding up.</h1>
-        <p>This is momentum, not perfection.</p>
-      </div>
-
-      <section id="stackStats" class="stack-stats"></section>
-      <section id="stackTimeline" class="timeline"></section>
-      <button id="clearDataButton" class="danger-button">Clear local test data</button>
-    </section>
-
-    <section class="screen" id="screen-about" aria-labelledby="about-title">
-      <article class="story-card">
-        <p class="eyebrow">About</p>
-        <h1 id="about-title">The Inspiration</h1>
-        <p>
-          I once lost 70 pounds on a weight-loss plan. I learned a lot from it, and for a while it worked.
-          But when I came off the plan, I gained the weight back.
-        </p>
-        <p>
-          That experience taught me something important: losing weight is not only about following a program.
-          It is about building a way of living that can still work tomorrow, next month, and years from now.
-        </p>
-        <p>
-          Choice...Repeat was born from that idea. Instead of chasing a perfect diet, the goal is to make
-          one healthy, meaningful choice each day, repeat it, and slowly stack changes that last.
-        </p>
-        <p>
-          If one better choice can help me get back on the road, maybe it can help others find their road too.
-        </p>
-
-        <div class="divider"></div>
-
-        <h2>About Developer</h2>
-        <p>
-          David Fliesen is a creative technologist, retired U.S. Navy Chief Journalist, multimedia developer,
-          animator, and emerging AI app developer based in Summerville, South Carolina.
-        </p>
-        <p>
-          Choice...Repeat is part of his effort to combine lived experience, practical design, AI-assisted
-          development, and real-world habit change into tools that help people improve one step at a time.
-        </p>
-
-        <div class="profile-links">
-          <a href="https://www.linkedin.com/in/fliesen" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://davidfliesen.github.io" target="_blank" rel="noopener">Portfolio</a>
-          <a href="https://github.com/davidfliesen" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </article>
-    </section>
-
-    <section class="health-note">
-      <strong>Health note:</strong>
-      Choice...Repeat is for general education, reflection, and habit support. It does not diagnose, treat,
-      or replace medical advice.
-    </section>
+    <section class="screen" id="screen-stack" aria-labelledby="stack-title"><div class="screen-heading"><p class="eyebrow">My Stack</p><h1 id="stack-title">Your small changes are adding up.</h1><p>This is momentum, not perfection.</p></div><section id="stackStats" class="stack-stats"></section><section id="stackTimeline" class="timeline"></section><button id="clearDataButton" class="danger-button">Clear local test data</button></section>
+    <section class="screen" id="screen-about" aria-labelledby="about-title"><article class="story-card"><p class="eyebrow">About</p><h1 id="about-title">The Inspiration</h1><p>I once lost 70 pounds on a weight-loss plan. I learned a lot from it, and for a while it worked. But when I came off the plan, I gained the weight back.</p><p>That experience taught me something important: losing weight is not only about following a program. It is about building a way of living that can still work tomorrow, next month, and years from now.</p><p>Choice...Repeat was born from that idea. Instead of chasing a perfect diet, the goal is to make one healthy, meaningful choice each day, repeat it, and slowly stack changes that last.</p><p>If one better choice can help me get back on the road, maybe it can help others find their road too.</p><div class="divider"></div><h2>About Developer</h2><p>David Fliesen is a creative technologist, retired U.S. Navy Chief Journalist, multimedia developer, animator, and emerging AI app developer based in Summerville, South Carolina.</p><p>Choice...Repeat is part of his effort to combine lived experience, practical design, AI-assisted development, and real-world habit change into tools that help people improve one step at a time.</p><div class="profile-links"><a href="https://www.linkedin.com/in/fliesen" target="_blank" rel="noopener">LinkedIn</a><a href="https://davidfliesen.github.io" target="_blank" rel="noopener">Portfolio</a><a href="https://github.com/davidfliesen" target="_blank" rel="noopener">GitHub</a></div></article></section>
+    <section class="health-note"><strong>Health note:</strong> Choice...Repeat is for general education, reflection, and habit support. It does not diagnose, treat, or replace medical advice.</section>
   </main>
-
-  <nav class="bottom-nav" aria-label="Primary">
-    <button data-route="today" class="active">Today</button>
-    <button data-route="explore">Explore</button>
-    <button data-route="coach">Coach</button>
-    <button data-route="stack">Stack</button>
-    <button data-route="about">About</button>
-  </nav>
-
+  <nav class="bottom-nav" aria-label="Primary"><button data-route="today" class="active">Today</button><button data-route="explore">Explore</button><button data-route="coach">Coach</button><button data-route="stack">Stack</button><button data-route="about">About</button></nav>
   <script src="./app.js" type="module"></script>
-</body>
-</html>
+</body></html>
