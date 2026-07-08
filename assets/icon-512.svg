@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#f7f9fe"/>
-  <path d="M157 300a116 116 0 0 1 168-143" fill="none" stroke="#10c7a5" stroke-width="34" stroke-linecap="round"/>
-  <path d="M325 157l-2-52 48 18" fill="none" stroke="#10c7a5" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M355 212a116 116 0 0 1-168 143" fill="none" stroke="#5b67f2" stroke-width="34" stroke-linecap="round"/>
-  <path d="M187 355l2 52-48-18" fill="none" stroke="#5b67f2" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M176 260l54 54 112-123" fill="none" stroke="#10c7a5" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#26352b"/><path d="M157 300a116 116 0 0 1 168-143" fill="none" stroke="#b7c8a8" stroke-width="34" stroke-linecap="round"/><path d="M325 157l-2-52 48 18" fill="none" stroke="#b7c8a8" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/><path d="M355 212a116 116 0 0 1-168 143" fill="none" stroke="#d5b88f" stroke-width="34" stroke-linecap="round"/><path d="M187 355l2 52-48-18" fill="none" stroke="#d5b88f" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/><path d="M176 260l54 54 112-123" fill="none" stroke="#b7c8a8" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/></svg>
