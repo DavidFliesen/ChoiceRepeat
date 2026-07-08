@@ -1,11 +1,11 @@
 {
   "name": "Choice...Repeat",
   "short_name": "ChoiceRepeat",
-  "description": "Make one better food choice each day. Track it. Repeat it. Keep going.",
+  "description": "Make one meaningful choice each day. Repeat it. Stack subtle changes that last.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f7fd",
+  "background_color": "#f4f7fd",
   "theme_color": "#0b173d",
   "orientation": "portrait-primary",
   "icons": [
