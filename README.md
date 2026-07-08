@@ -1,15 +1,30 @@
-# Choice...Repeat PWA v5
+# Choice...Repeat PWA v6
 
-This version adds **Inspiration Moments** in a copyright-safe way.
+This version removes the oversized logo/image treatment and removes anything frame-like.
 
-## New in v5
-- Daily Inspiration Moment card on the Today screen
-- Inspiration Moments library in Explore
-- 8 original historical inspiration moments
-- Symbolic portrait tiles using initials and an icon instead of copyrighted portraits
-- “Use as reflection prompt” button
+## v6 fixes
+
+- No giant white logo panel
+- No iframe-style layout
+- No hamburger menu
+- Unified app surface from top to bottom
+- Earth-tone palette based on cream, sand, beige, camel, taupe, clay, terracotta, rust, olive, sage, moss, and charcoal
+- Small wordmark only
+- Bottom navigation remains simple for future iOS/Android porting
+- Inspiration Moments remain included
 
 ## Run locally
-python3 -m http.server 8000
 
-Open http://localhost:8000
+```bash
+python3 -m http.server 8000
+```
+
+Open:
+
+```text
+http://localhost:8000
+```
+
+## Important deployment note
+
+If GitHub Pages shows an older version, clear the browser cache or bump the service worker cache name again. This version uses `choicerepeat-v6`.
