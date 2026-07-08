@@ -1,25 +1,21 @@
-# Choice...Repeat PWA v3
+# Choice...Repeat PWA v4
 
-**Small changes that last.**
+This version simplifies the UX for future iOS/Android porting.
 
-Choice...Repeat is shifting from a weight-loss tracker into a subtle life-change app.
+## Key changes
 
-Core idea:
-
-> Every day, make one better choice. Track it lightly. Repeat it. Keep going.
-
-## v3 UX direction
-
-This revision centers on one meaningful daily choice, subtle lifestyle change, repeatable habits, reflection instead of shame, and a broader approach than weight loss alone.
-
-## Current screens
-
-- Today
-- Explore Choices
-- Choice Coach
-- My Stack
-- The Inspiration
-- About Developer
+- Removed hamburger menu
+- Removed drawer / split-frame style UI
+- Added 5 bottom navigation buttons:
+  - Today
+  - Explore
+  - Coach
+  - Stack
+  - About
+- Combined The Inspiration and About Developer into one About screen
+- Changed to a darker, soothing nature-inspired color palette
+- Earth tones: forest, moss, sage, sand, clay, cream
+- Still static and GitHub Pages-ready
 
 ## Run locally
 
@@ -27,14 +23,16 @@ This revision centers on one meaningful daily choice, subtle lifestyle change, r
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000`.
+Open:
 
-## GitHub Pages
+```text
+http://localhost:8000
+```
 
-Upload the files to the root of a repo and enable Settings → Pages → Deploy from branch → main / root.
+## Deploy to GitHub Pages
 
-## Developer links
+Upload these files to the root of a GitHub repo and enable:
 
-- LinkedIn: https://www.linkedin.com/in/fliesen
-- Portfolio: https://davidfliesen.github.io
-- GitHub: https://github.com/davidfliesen
+```text
+Settings → Pages → Deploy from branch → main / root
+```
