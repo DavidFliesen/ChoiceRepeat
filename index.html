@@ -11,149 +11,157 @@
   <link rel="apple-touch-icon" href="./assets/icon-192.png" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <main id="main" class="app-shell">
-    <header class="app-header">
-      <button class="brand-wordmark" data-route="today" aria-label="Choice...Repeat home">
-        <span class="brand-mark">✓</span>
-        <span class="brand-text">Choice<span>...</span>Repeat</span>
-      </button>
-      <button id="installButton" class="small-button" hidden>Install</button>
-    </header>
-
     <section class="screen active" id="screen-today" aria-labelledby="today-title">
-      <article class="hero">
-        <div class="sun-orb" aria-hidden="true"></div>
-        <div class="leaf-sprig leaf-left" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
+      <header class="hero-card">
+        <div class="hero-topline">
+          <div class="brand-mini">
+            <span class="leaf-brand" aria-hidden="true"></span>
+            <span>Good morning, David</span>
+          </div>
+          <button id="installButton" class="icon-button" hidden>Install</button>
         </div>
-        <div class="leaf-sprig leaf-right" aria-hidden="true">
-          <span></span><span></span><span></span>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="mountain mountain-back"></div>
+          <div class="mountain mountain-mid"></div>
+          <div class="mountain mountain-front"></div>
+          <div class="plant plant-one"><i></i><i></i><i></i><i></i></div>
+          <div class="plant plant-two"><i></i><i></i><i></i></div>
         </div>
-        <p class="eyebrow">Small changes that last</p>
+
         <h1 id="today-title">One better choice today.</h1>
-        <p>Not a perfect life. Not another temporary plan. Just one meaningful choice you can repeat.</p>
-      </article>
+        <p>Not a perfect life. Not another temporary plan.<br />Just one meaningful choice you can repeat.</p>
+      </header>
 
-      <article class="card daily-card">
-        <div class="card-watermark choice-watermark" aria-hidden="true">↻</div>
-        <div class="card-meta">
-          <span id="dailyCategory" class="badge">Today</span>
+      <article class="daily-focus-card">
+        <div class="daily-copy">
+          <div class="label-row">
+            <span class="icon-badge">◎</span>
+            <span class="section-label">Today’s Focus</span>
+          </div>
+          <h2 id="dailyTitle">Loading today’s choice...</h2>
+          <p id="dailyWhy"></p>
+
+          <div class="try-panel">
+            <strong>Try it this way</strong>
+            <p id="dailyTry"></p>
+          </div>
+
+          <div class="button-row">
+            <button id="triedTodayButton" class="primary-button">✓ I tried this today</button>
+            <button id="newChoiceButton" class="secondary-button">Another choice</button>
+          </div>
+        </div>
+
+        <div class="daily-art">
+          <span id="dailyCategory" class="badge">Reset</span>
           <span id="todayDate" class="date-text"></span>
-        </div>
-        <h2 id="dailyTitle">Loading today’s choice...</h2>
-        <p id="dailyWhy"></p>
-
-        <div class="soft-panel">
-          <strong>Try it this way</strong>
-          <p id="dailyTry"></p>
-        </div>
-
-        <div class="button-row">
-          <button id="triedTodayButton" class="primary-button">I tried this today</button>
-          <button id="newChoiceButton" class="secondary-button">Another choice</button>
+          <img src="./assets/illustrations/comfort-bowl.png" alt="" />
         </div>
       </article>
 
-      <article class="card inspiration-card">
-        <div class="card-watermark" aria-hidden="true">✦</div>
-        <div class="card-meta">
-          <span class="badge warm">Inspiration Moment</span>
-          <span id="inspirationTheme" class="date-text"></span>
+      <article class="inspiration-strip-card">
+        <div class="strip-header">
+          <div class="label-row">
+            <span class="icon-badge star">★</span>
+            <span class="section-label">Inspiration Moments</span>
+          </div>
+          <button id="momentDetailsButton" class="text-button">
+            <span id="activeMomentLine">Build strength gradually</span>
+            <span aria-hidden="true">›</span>
+          </button>
         </div>
 
-        <div class="moment-top">
-          <div class="portrait-tile">
-            <div class="portrait-glow"></div>
-            <img id="inspirationPortrait" class="portrait-image" src="./assets/portraits/lincoln.svg" alt="Stylized portrait illustration" />
-            <div id="inspirationSymbol" class="portrait-symbol">✦</div>
+        <div id="momentCarousel" class="moment-carousel" aria-label="Inspiration Moments"></div>
+      </article>
+
+      <article id="momentDetailCard" class="moment-detail-card">
+        <div class="moment-detail-top">
+          <img id="activeMomentPortrait" src="./assets/portraits/roosevelt.png" alt="" />
+          <div>
+            <span id="activeMomentTheme" class="badge warm">Strength</span>
+            <h2 id="activeMomentPerson">Theodore Roosevelt</h2>
+            <p id="activeMomentTitle" class="accent-line">Build strength gradually</p>
+          </div>
+        </div>
+
+        <p id="activeMomentSummary"></p>
+
+        <div class="two-mini-panels">
+          <div>
+            <strong>The choice</strong>
+            <p id="activeMomentChoice"></p>
           </div>
           <div>
-            <h2 id="inspirationPerson">Loading moment...</h2>
-            <p id="inspirationTitle" class="moment-title"></p>
+            <strong>Try this today</strong>
+            <p id="activeMomentTry"></p>
           </div>
         </div>
 
-        <p id="inspirationSummary"></p>
-
-        <div class="soft-panel">
-          <strong>The choice</strong>
-          <p id="inspirationChoice"></p>
-        </div>
-
-        <div class="soft-panel sage-panel">
-          <strong>Try this today</strong>
-          <p id="inspirationTry"></p>
-        </div>
-
-        <p id="inspirationRepeat" class="repeat-line"></p>
-
-        <div class="button-row">
-          <button id="useMomentButton" class="secondary-button">Use as reflection prompt</button>
-          <button id="newMomentButton" class="secondary-button">Another moment</button>
-        </div>
+        <p id="activeMomentRepeat" class="repeat-line"></p>
+        <button id="useMomentButton" class="secondary-button full">Use as reflection prompt</button>
       </article>
 
       <section class="stats-row">
-        <article class="stat-card">
-          <div class="mini-graphic stack-graphic" aria-hidden="true"><span></span><span></span><span></span></div>
+        <article>
+          <span class="stat-icon stones"></span>
           <strong id="stackCount">0</strong>
           <span>choices stacked</span>
+          <em>Keep it going.</em>
         </article>
-        <article class="stat-card">
-          <div class="mini-graphic sprout-graphic" aria-hidden="true"><span></span><span></span></div>
+        <article>
+          <span class="stat-icon sprig"></span>
           <strong id="weekCount">0</strong>
           <span>this week</span>
+          <em>You’re building momentum.</em>
         </article>
       </section>
 
-      <article class="card">
-        <div class="card-watermark" aria-hidden="true">◌</div>
-        <h2>Quick reflection</h2>
-        <p>What made today’s choice easier or harder?</p>
-        <textarea id="reflectionInput" rows="3" placeholder="Example: I changed the drink. That felt doable."></textarea>
-        <button id="saveReflectionButton" class="primary-button full">Save reflection</button>
+      <article class="reflection-card">
+        <div class="label-row">
+          <span class="leaf-dot"></span>
+          <span class="section-label">Reflection</span>
+        </div>
+        <p>What’s one thing you learned about yourself today?</p>
+        <div class="reflection-input-wrap">
+          <textarea id="reflectionInput" rows="2" placeholder="Write your thoughts..."></textarea>
+          <button id="saveReflectionButton" class="round-submit" aria-label="Save reflection">➤</button>
+        </div>
       </article>
     </section>
 
     <section class="screen" id="screen-explore" aria-labelledby="explore-title">
-      <div class="screen-heading illustrated-heading">
-        <div class="heading-graphic" aria-hidden="true"><span></span><span></span><span></span></div>
+      <header class="page-heading">
         <p class="eyebrow">Explore</p>
         <h1 id="explore-title">Choose your next small change.</h1>
         <p>Pick one area that would help your real life today.</p>
-      </div>
+      </header>
 
       <section class="subsection">
-        <div class="subsection-heading">
-          <h2>Choice Library</h2>
-          <p>Small, repeatable life changes.</p>
-        </div>
+        <h2>Choice Library</h2>
         <div id="categoryFilters" class="category-filters"></div>
         <div id="choiceLibrary" class="choice-library"></div>
       </section>
 
       <section class="subsection">
-        <div class="subsection-heading">
-          <h2>Inspiration Moments</h2>
-          <p>Short original stories from history to remind you that challenge and growth go together.</p>
-        </div>
-        <div id="inspirationLibrary" class="inspiration-library"></div>
+        <h2>Inspiration Moments</h2>
+        <div id="inspirationLibrary" class="inspiration-grid"></div>
       </section>
     </section>
 
     <section class="screen" id="screen-coach" aria-labelledby="coach-title">
-      <div class="screen-heading illustrated-heading">
-        <div class="heading-graphic compass-graphic" aria-hidden="true"><span></span><span></span><span></span></div>
+      <header class="page-heading">
         <p class="eyebrow">Choice Coach</p>
         <h1 id="coach-title">What choice are you facing?</h1>
         <p>Food, movement, sleep, cravings, stress, routines — ask for one better option.</p>
-      </div>
+      </header>
 
-      <article class="card">
+      <article class="content-card">
         <label for="coachInput">Tell the coach what is happening.</label>
         <textarea id="coachInput" rows="4" placeholder="Example: I want chips late at night, but I’m not really hungry."></textarea>
 
@@ -170,12 +178,11 @@
     </section>
 
     <section class="screen" id="screen-stack" aria-labelledby="stack-title">
-      <div class="screen-heading illustrated-heading">
-        <div class="heading-graphic stack-heading" aria-hidden="true"><span></span><span></span><span></span></div>
+      <header class="page-heading">
         <p class="eyebrow">My Stack</p>
         <h1 id="stack-title">Your small changes are adding up.</h1>
         <p>This is momentum, not perfection.</p>
-      </div>
+      </header>
 
       <section id="stackStats" class="stats-row"></section>
       <section id="stackTimeline" class="timeline"></section>
@@ -183,10 +190,7 @@
     </section>
 
     <section class="screen" id="screen-about" aria-labelledby="about-title">
-      <article class="card story-card">
-        <div class="about-graphic" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
+      <article class="content-card story-card">
         <p class="eyebrow">About</p>
         <h1 id="about-title">The Inspiration</h1>
         <p>
@@ -201,9 +205,6 @@
           Choice...Repeat was born from that idea. Instead of chasing a perfect diet, the goal is to make
           one healthy, meaningful choice each day, repeat it, and slowly stack changes that last.
         </p>
-        <p>
-          If one better choice can help me get back on the road, maybe it can help others find their road too.
-        </p>
 
         <div class="divider"></div>
 
@@ -211,10 +212,6 @@
         <p>
           David Fliesen is a creative technologist, retired U.S. Navy Chief Journalist, multimedia developer,
           animator, and emerging AI app developer based in Summerville, South Carolina.
-        </p>
-        <p>
-          Choice...Repeat is part of his effort to combine lived experience, practical design, AI-assisted
-          development, and real-world habit change into tools that help people improve one step at a time.
         </p>
 
         <div class="profile-links">
@@ -233,11 +230,11 @@
   </main>
 
   <nav class="bottom-nav" aria-label="Primary">
-    <button data-route="today" class="active">Today</button>
-    <button data-route="explore">Explore</button>
-    <button data-route="coach">Coach</button>
-    <button data-route="stack">Stack</button>
-    <button data-route="about">About</button>
+    <button data-route="today" class="active"><span>♧</span>Today</button>
+    <button data-route="explore"><span>◉</span>Explore</button>
+    <button data-route="coach"><span>☻</span>Coach</button>
+    <button data-route="stack"><span>▱</span>Stack</button>
+    <button data-route="about"><span>ⓘ</span>About</button>
   </nav>
 
   <script src="./app.js" type="module"></script>

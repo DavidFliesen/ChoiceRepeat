@@ -1,4 +1,4 @@
-const cacheName = "choicerepeat-v8";
+const cacheName = "choicerepeat-v9";
 const appShell = [
   "./",
   "./index.html",
@@ -8,7 +8,16 @@ const appShell = [
   "./assets/icon-192.svg",
   "./assets/icon-512.svg",
   "./assets/icon-192.png",
-  "./assets/icon-512.png"
+  "./assets/icon-512.png",
+  "./assets/illustrations/comfort-bowl.png",
+  "./assets/portraits/roosevelt.png",
+  "./assets/portraits/tubman.png",
+  "./assets/portraits/douglass.png",
+  "./assets/portraits/helen-keller.png",
+  "./assets/portraits/lincoln.png",
+  "./assets/portraits/jackie-robinson.png",
+  "./assets/portraits/eleanor-roosevelt.png",
+  "./assets/portraits/carver.png"
 ];
 
 self.addEventListener("install", event => {
@@ -27,7 +36,6 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
-
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
